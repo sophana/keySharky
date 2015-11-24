@@ -1,19 +1,27 @@
-<?xml version="1.0"?>
-<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
-         xmlns:NC="http://home.netscape.com/NC-rdf#"
-         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$kLx0i3"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="3.0"
-                   em:maxVersion="35.*" />
-  <RDF:Description RDF:about="urn:mozilla:install-manifest"
-                   em:id="keysharky@intars.students"
-                   em:name="keySharky"
-                   em:description="Add missing keyboard functionality to Grooveshark!"
-                   em:version="1.6.2"
-                   em:creator="Intars Students"
-                   em:optionsURL="chrome://keysharky/content/options.xul"
-                   em:iconURL="chrome://keysharky/skin/keysharky.png">
-    <em:targetApplication RDF:resource="rdf:#$kLx0i3"/>
-  </RDF:Description>
-</RDF:RDF>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+    
+    <Description about="urn:mozilla:install-manifest">
+    <!-- properties -->
+	<em:id>test@soph.aa.am</em:id>
+	<em:minVersion>3.0</em:minVersion>
+	<em:maxVersion>43.*</em:maxVersion>
+	<em:name>keysharky</em:name>
+	<em:type>2</em:type>
+ 	<em:description>Add missing keyboard functionality to Spotify!</em:description>
+	<em:version>1.0</em:version>
+	<em:creator>Soph</em:creator>
+	<em:optionsURL>chrome://keysharky/content/options.xul</em:optionsURL>
+	<em:iconURL>chrome://keysharky/skin/keysharky.png"</em:iconURL>
+	<em:targetApplication>
+	  <Description>
+     	    <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+	    <em:minVersion>3.0</em:minVersion>
+	    <em:maxVersion>43.*</em:maxVersion>
+	  </Description>
+ 	</em:targetApplication>
+
+  </Description>
+</RDF>

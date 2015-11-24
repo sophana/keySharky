@@ -3,10 +3,10 @@ var keysharky = {
   // Init keySharky object
   init: function() {
     this.allToggles = {
-      "play"      : function(){ keysharky.gsliteswf.togglePlayPause(); },
-      "stop"      : function(){ keysharky.gsliteswf.pause(); },
-      "previous"  : function(){ keysharky.gsliteswf.previous(); },
-      "next"      : function(){ keysharky.gsliteswf.next(); },
+      "play"      : function(){ keysharky.gsliteswf.getElementById("play").click(); },
+      "stop"      : function(){ keysharky.gsliteswf.getElementById("play").click(); },
+      "previous"  : function(){ keysharky.gsliteswf.getElementById("previous").click(); },
+      "next"      : function(){ keysharky.gsliteswf.getElementById("next").click(); },
 
       "favorite"  : function(){ keysharky.gsliteswf.favoriteCurrentSong(); },
       "remove"    : function(){ keysharky.gsliteswf.removeCurrentSongFromQueue(); },
@@ -105,6 +105,8 @@ var keysharky = {
       }
 
       this.gsAPI.start(port);
+      //this.gsAPI._start(port,"localhost");
+	
       this.log("gsAPI server started (@ http://localhost:" + port + ")");
 
       return true;
@@ -477,7 +479,7 @@ var keysharky = {
   findGrooveshark: function(){
 
     var mTabs = Array();
-    this.log("searching for Grooveshark tab ...");
+    this.log("searching for spotify tab ...");
 
     if (this.environment == "prism"){
       mTabs[0] = WebRunner._getBrowser();
@@ -492,19 +494,12 @@ var keysharky = {
       for (var i=0; i<mTabs.length; i++){
         var browser = typeof(mTabs[i].loadURI) == "function" ? mTabs[i] : gBrowser.getBrowserForTab(mTabs[i]);
 
-        /*
-          Search for tab with URL like:
-            http://grooveshark.com/
-            http://listen.grooveshark.com/
-            http://preview.grooveshark.com/
-            http://staging.grooveshark.com/
-            http://retro.grooveshark.com/
-        */
-        if (browser.currentURI["spec"].search(/^http\:\/\/((listen|preview|staging|retro)\.|)grooveshark\.com/) != -1){
-          if (browser.contentWindow.wrappedJSObject.Grooveshark != undefined){
+        if (browser.currentURI["spec"].search(/^https\:\/\/((player)\.|)spotify\.com/) != -1){
+	  //document.getElementById("main").contentDocument.getElementById("play").click()
+          if (browser.contentDocument.getElementById("main").contentDocument != undefined){
 
-            this.log("found Grooveshark");
-            this.gsliteswf = browser.contentWindow.wrappedJSObject.Grooveshark;
+            this.log("found2 spotify");
+            this.gsliteswf = browser.contentDocument.getElementById("main").contentDocument;
             this.gsTab = mTabs[i];
 
             break;
