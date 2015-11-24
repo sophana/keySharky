@@ -1,7 +1,7 @@
 
 This fork is a very quick and very dirty port of the excellent keysharky to control spotify web player instead of grooveshark.
 
-For now, only play, previous and next actions are working
+For now, only play, previous and next actions are working, and only for firefox.
 
 This extension has the excellent feature of enabling an http web server to control spotify web player.
 
@@ -10,6 +10,8 @@ This web server only listens to localport, but it is very useful for programming
 Adding more buttons like shuffle, repeat should be very easy.
 
 It should also be quite easy to retrieve some status info.
+
+Cleanup should follow... contributions welcome.
 
 
 old documentation of the key sharky is here:
