@@ -3,8 +3,8 @@ var keysharky = {
   // Init keySharky object
   init: function() {
     this.allToggles = {
-      "play"      : function(){ keysharky.gsliteswf.getElementById("play").click(); },
-      "stop"      : function(){ keysharky.gsliteswf.getElementById("play").click(); },
+      "play"      : function(){ keysharky.gsliteswf.getElementById(keysharky.playId).click(); },
+      "stop"      : function(){ keysharky.gsliteswf.getElementById(keysharky.playId).click(); },
       "previous"  : function(){ keysharky.gsliteswf.getElementById("previous").click(); },
       "next"      : function(){ keysharky.gsliteswf.getElementById("next").click(); },
 
@@ -468,7 +468,7 @@ var keysharky = {
 
           return true;
         }catch(e){
-          this.log("couldn't toggle '" + s + "'");
+          this.log("couldn't toggle '" + s + "'"+e.toString());
           return false;
         }
       }
@@ -479,7 +479,7 @@ var keysharky = {
   findGrooveshark: function(){
 
     var mTabs = Array();
-    this.log("searching for spotify tab ...");
+    this.log("searching for spotify tab .....");
 
     if (this.environment == "prism"){
       mTabs[0] = WebRunner._getBrowser();
@@ -494,13 +494,22 @@ var keysharky = {
       for (var i=0; i<mTabs.length; i++){
         var browser = typeof(mTabs[i].loadURI) == "function" ? mTabs[i] : gBrowser.getBrowserForTab(mTabs[i]);
 
-        if (browser.currentURI["spec"].search(/^https\:\/\/((player)\.|)spotify\.com/) != -1){
+        if (browser.currentURI["spec"].search(/^https\:\/\/((player)\.|(play)\.)spotify\.com/) != -1){
 	  //document.getElementById("main").contentDocument.getElementById("play").click()
           if (browser.contentDocument.getElementById("main").contentDocument != undefined){
 
             this.log("found2 spotify");
             this.gsliteswf = browser.contentDocument.getElementById("main").contentDocument;
             this.gsTab = mTabs[i];
+	    this.playId = "play";
+
+            break;
+          }
+	  if (browser.contentDocument.getElementById("app-player").contentDocument != undefined){
+            this.log("found spotify v2");
+            this.gsliteswf = browser.contentDocument.getElementById("app-player").contentDocument;
+            this.gsTab = mTabs[i];
+	    this.playId="play-pause";
 
             break;
           }
